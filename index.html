@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html xml:lang="es">
   <head>
-    <title>Sumador</title>
+    <title>Totalizador</title>
   </head>
   <body>
-    <h1>Sumador</h1>
-    <form id="sumar-form">
-      <label for="primer-numero">Primer número:</label>
-      <input type="number" id="primer-numero" />
-      <label for="segundo-numero">Segundo número:</label>
-      <input type="number" id="segundo-numero" />
-      <input type="submit" value="Sumar" id="sumar-button" />
+    <h1>Ingresar Precio</h1>
+    <form id="precio-form">
+      <label for="precio-input">Ingrese el precio:</label>
+      <input type="number" id="precio-input" />
+      <input type="submit" value="Mostrar Precio" id="mostrar-precio-button" />
     </form>
     <div id="resultado-div"></div>
 
-    <script type="module" src="./src/presenter.js"></script>
+    <script type="module">
+      import { ingresarPrecio } from "./src/totalizador.js";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("precio-form");
+        const input = document.getElementById("precio-input");
+        const resultadoDiv = document.getElementById("resultado-div");
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const precio = parseFloat(input.value);
+
+          if (!isNaN(precio)) {
+            resultadoDiv.textContent = `Precio ingresado: ${ingresarPrecio(precio)}`;
+          } else {
+            resultadoDiv.textContent = "Ingrese un número válido.";
+          }
+        });
+      });
+    </script>
   </body>
 </html>
