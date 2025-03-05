@@ -18,6 +18,10 @@
       <input type="number" id="items" />
       <input type="submit" value="Cantidad" id="cantidad-button" />
     </form>
+    
+    <form id="precio-neto-form">
+      <input type="submit" value="Mostrar Precio Neto" id="mostrar-precio-neto-button" />
+    </form>
 
     <div id="resultado-div"></div>
     <div id="resultado-cantidad-de-items"></div>
@@ -31,7 +35,6 @@
         const precioForm = document.getElementById("precio-form");
         const precioInput = document.getElementById("precio-input");
         const resultadoDiv = document.getElementById("resultado-div");
-        const resultadoPrecioNeto = document.getElementById("resultado-precio-neto");
 
         precioForm.addEventListener("submit", (event) => {
           event.preventDefault();
@@ -59,7 +62,10 @@
           }
         });
 
-        precioForm.addEventListener("submit", (event) => {
+        const precioNetoForm = document.getElementById("precio-neto-form");
+        const resultadoPrecioNeto = document.getElementById("resultado-precio-neto");
+
+        precioNetoForm.addEventListener("submit", (event) => {
           event.preventDefault();
           const precio = parseFloat(precioInput.value);
           const cantidad = parseInt(itemsInput.value);
