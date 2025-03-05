@@ -4,30 +4,56 @@
     <title>Totalizador</title>
   </head>
   <body>
-    <h1>Ingresar Precio</h1>
+    <h1>Totalizador de ventas</h1>
+    
     <form id="precio-form">
       <label for="precio-input">Ingrese el precio:</label>
       <input type="number" id="precio-input" />
       <input type="submit" value="Mostrar Precio" id="mostrar-precio-button" />
     </form>
+
+  
+    <form id="cantidad-de-items">
+      <label for="items">Cantidad de items a comprar:</label>
+      <input type="number" id="items" />
+      <input type="submit" value="Cantidad" id="cantidad-button" />
+    </form>
+
     <div id="resultado-div"></div>
+    <div id="resultado-cantidad-de-items"></div>
 
     <script type="module">
       import { ingresarPrecio } from "./src/totalizador.js";
 
       document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("precio-form");
-        const input = document.getElementById("precio-input");
+      
+        const precioForm = document.getElementById("precio-form");
+        const precioInput = document.getElementById("precio-input");
         const resultadoDiv = document.getElementById("resultado-div");
 
-        form.addEventListener("submit", (event) => {
+        precioForm.addEventListener("submit", (event) => {
           event.preventDefault();
-          const precio = parseFloat(input.value);
+          const precio = parseFloat(precioInput.value);
 
           if (!isNaN(precio)) {
             resultadoDiv.textContent = `Precio ingresado: ${ingresarPrecio(precio)}`;
           } else {
             resultadoDiv.textContent = "Ingrese un número válido.";
+          }
+        });
+
+        const cantidadForm = document.getElementById("cantidad-de-items");
+        const itemsInput = document.getElementById("items");
+        const resultadoCantidadDiv = document.getElementById("resultado-cantidad-de-items");
+
+        cantidadForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const cantidad = parseInt(itemsInput.value);
+
+          if (!isNaN(cantidad)) {
+            resultadoCantidadDiv.textContent = `Cantidad de items: ${cantidad}`;
+          } else {
+            resultadoCantidadDiv.textContent = "Ingrese una cantidad válida.";
           }
         });
       });
