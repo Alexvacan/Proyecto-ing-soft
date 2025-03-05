@@ -7,6 +7,7 @@ import {
 
 const precioInput = document.querySelector("#precio-input");
 const itemsInput = document.querySelector("#items");
+const estadoSelect = document.querySelector("#estado");
 const totalizarForm = document.querySelector("#totalizar-form");
 const resultadoTotalizar = document.querySelector("#resultado-totalizar");
 
@@ -16,6 +17,7 @@ totalizarForm.addEventListener("submit", (event) => {
 
   const precio = Number.parseFloat(precioInput.value);
   const cantidad = Number.parseInt(itemsInput.value);
+  const estado = estadoSelect.value;
 
   
   if (!isNaN(precio) && !isNaN(cantidad)) {
@@ -26,6 +28,7 @@ totalizarForm.addEventListener("submit", (event) => {
       <p>Precio ingresado: ${ingresarPrecio(precio)}</p>
       <p>Cantidad de ítems: ${mostrarCantidadDeItems(cantidad)}</p>
       <p>Precio neto: ${precioNeto}</p>
+      <p>Código de estado: ${estado}</p>
     `;
   } else {
 
