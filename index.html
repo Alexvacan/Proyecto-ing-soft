@@ -21,15 +21,17 @@
 
     <div id="resultado-div"></div>
     <div id="resultado-cantidad-de-items"></div>
+    <div id="resultado-precio-neto"></div>
 
     <script type="module">
-      import { ingresarPrecio } from "./src/totalizador.js";
+      import { ingresarPrecio, mostrar_precio_neto } from "./src/totalizador.js";
 
       document.addEventListener("DOMContentLoaded", () => {
       
         const precioForm = document.getElementById("precio-form");
         const precioInput = document.getElementById("precio-input");
         const resultadoDiv = document.getElementById("resultado-div");
+        const resultadoPrecioNeto = document.getElementById("resultado-precio-neto");
 
         precioForm.addEventListener("submit", (event) => {
           event.preventDefault();
@@ -54,6 +56,19 @@
             resultadoCantidadDiv.textContent = `Cantidad de items: ${cantidad}`;
           } else {
             resultadoCantidadDiv.textContent = "Ingrese una cantidad válida.";
+          }
+        });
+
+        precioForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const precio = parseFloat(precioInput.value);
+          const cantidad = parseInt(itemsInput.value);
+
+          if (!isNaN(precio) && !isNaN(cantidad)) {
+            const precioNeto = mostrar_precio_neto(cantidad, precio);
+            resultadoPrecioNeto.textContent = `Precio neto: ${precioNeto}`;
+          } else {
+            resultadoPrecioNeto.textContent = "Ingrese valores válidos.";
           }
         });
       });
