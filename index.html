@@ -5,33 +5,21 @@
   </head>
   <body>
     <h1>Totalizador de ventas</h1>
-    
-    <form id="precio-form">
-      <label for="precio-input">Ingrese el precio:</label>
-      <input type="number" id="precio-input" />
-      <input type="submit" value="Mostrar Precio" id="mostrar-precio-button" />
-    </form>
-
-    <form id="cantidad-de-items">
-      <label for="items">Cantidad de items a comprar:</label>
-      <input type="number" id="items" />
-      <input type="submit" value="Cantidad" id="cantidad-button" />
-    </form>
-
-    <form id="precio-neto-form">
-      <input type="submit" value="Mostrar Precio Neto" id="mostrar-precio-neto-button" />
-    </form>
 
     <form id="totalizar-form">
+      <label for="precio-input">Ingrese el precio por ítem:</label>
+      <input type="number" id="precio-input" />
+
+      <label for="items">Cantidad de ítems:</label>
+      <input type="number" id="items" />
+
       <input type="submit" value="Totalizar" id="totalizar-button" />
     </form>
 
-    <div id="resultado-div"></div>
-    <div id="resultado-cantidad-de-items"></div>
-    <div id="resultado-precio-neto"></div>
+
     <div id="resultado-totalizar"></div>
 
-    
+
     <script type="module" src="src/presenter.js"></script>
   </body>
 </html>
