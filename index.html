@@ -12,72 +12,26 @@
       <input type="submit" value="Mostrar Precio" id="mostrar-precio-button" />
     </form>
 
-  
     <form id="cantidad-de-items">
       <label for="items">Cantidad de items a comprar:</label>
       <input type="number" id="items" />
       <input type="submit" value="Cantidad" id="cantidad-button" />
     </form>
-    
+
     <form id="precio-neto-form">
       <input type="submit" value="Mostrar Precio Neto" id="mostrar-precio-neto-button" />
+    </form>
+
+    <form id="totalizar-form">
+      <input type="submit" value="Totalizar" id="totalizar-button" />
     </form>
 
     <div id="resultado-div"></div>
     <div id="resultado-cantidad-de-items"></div>
     <div id="resultado-precio-neto"></div>
+    <div id="resultado-totalizar"></div>
 
-    <script type="module">
-      import { ingresarPrecio, mostrar_precio_neto } from "./src/totalizador.js";
-
-      document.addEventListener("DOMContentLoaded", () => {
-      
-        const precioForm = document.getElementById("precio-form");
-        const precioInput = document.getElementById("precio-input");
-        const resultadoDiv = document.getElementById("resultado-div");
-
-        precioForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const precio = parseFloat(precioInput.value);
-
-          if (!isNaN(precio)) {
-            resultadoDiv.textContent = `Precio ingresado: ${ingresarPrecio(precio)}`;
-          } else {
-            resultadoDiv.textContent = "Ingrese un número válido.";
-          }
-        });
-
-        const cantidadForm = document.getElementById("cantidad-de-items");
-        const itemsInput = document.getElementById("items");
-        const resultadoCantidadDiv = document.getElementById("resultado-cantidad-de-items");
-
-        cantidadForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const cantidad = parseInt(itemsInput.value);
-
-          if (!isNaN(cantidad)) {
-            resultadoCantidadDiv.textContent = `Cantidad de items: ${cantidad}`;
-          } else {
-            resultadoCantidadDiv.textContent = "Ingrese una cantidad válida.";
-          }
-        });
-
-        const precioNetoForm = document.getElementById("precio-neto-form");
-        const resultadoPrecioNeto = document.getElementById("resultado-precio-neto");
-
-        precioNetoForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const precio = parseFloat(precioInput.value);
-          const cantidad = parseInt(itemsInput.value);
-
-          if (!isNaN(precio) && !isNaN(cantidad)) {
-            const precioNeto = mostrar_precio_neto(cantidad, precio);
-            resultadoPrecioNeto.textContent = `Precio neto: ${precioNeto}`;
-          } else {
-            resultadoPrecioNeto.textContent = "Ingrese valores válidos.";
-          }
-        });
-      });
-    </script>
+    
+    <script type="module" src="src/presenter.js"></script>
   </body>
 </html>
