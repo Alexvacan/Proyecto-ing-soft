@@ -30,4 +30,7 @@ describe("Precio Total con Impuesto", () => {
   it("debería calcular el precio total correctamente para California", () => {
     expect(calcularPrecioTotal(100, "CA")).toEqual(108.25);
   });
+  it("debería calcular el precio total correctamente para Alabama", () => {
+    expect(calcularPrecioTotal(100, "AL")).toEqual(104.00);
+  });
 });
