@@ -29,16 +29,15 @@ export function calcularPrecioTotal(precioNeto, estado) {
 
 export function calcularDescuento(precioTotal) {
     const descuentos = {
-        1000: 3,    // 3% descuento
-        3000: 5,    // 5% descuento
-        7000: 7,    // 7% descuento
-        10000: 10,  // 10% descuento
-        30000: 15,  // 15% descuento
+        1000: 3,   
+        3000: 5,    
+        7000: 7,   
+        10000: 10,  
+        30000: 15,  
     };
 
     let descuentoPorcentaje = 0;
 
-    // Iteramos sobre las claves de los descuentos para encontrar el más alto aplicable
     Object.keys(descuentos).forEach((key) => {
         if (precioTotal >= key) {
             descuentoPorcentaje = descuentos[key];

@@ -19,21 +19,33 @@ totalizarForm.addEventListener("submit", (event) => {
   const cantidad = Number.parseInt(itemsInput.value);
   const estado = estadoSelect.value;
 
-  if (!isNaN(precio) && !isNaN(cantidad)) {
-    const precioNeto = mostrar_precio_neto(cantidad, precio); // Calcular precio neto
-    const precioConImpuesto = calcularPrecioTotal(precioNeto, estado); // Calcular precio con impuesto
-    const { descuentoPorcentaje, descuento } = calcularDescuento(precioConImpuesto); // Calcular descuento
-    const precioFinal = precioConImpuesto - descuento; // Precio final con descuento aplicado
+  const impuestos = {
+    UT: 6.65,
+    NV: 8.00,
+    TX: 6.25,
+    AL: 4.00,
+    CA: 8.25,
+  };
+
+  const impuestoEstado = impuestos[estado];
+
+  if (!isNaN(precio) && !isNaN(cantidad) && impuestoEstado !== undefined) {
+    const precioNeto = mostrar_precio_neto(cantidad, precio);
+    const precioConImpuesto = calcularPrecioTotal(precioNeto, estado);
+    const impuesto = precioConImpuesto - precioNeto;
+    const { descuentoPorcentaje, descuento } = calcularDescuento(precioConImpuesto);
+    const precioFinal = precioConImpuesto - descuento;
 
     resultadoTotalizar.innerHTML = `
       <p>Precio ingresado: ${ingresarPrecio(precio)}</p>
       <p>Cantidad de ítems: ${mostrarCantidadDeItems(cantidad)}</p>
       <p>Precio neto: ${precioNeto}</p>
-      <p>Impuesto en ${estado}: ${precioConImpuesto - precioNeto}</p>  <!-- Muestra solo el impuesto -->
+      <p>Impuesto para ${estado}: ${impuestoEstado}%</p>
+      <p>Impuesto: ${impuesto.toFixed(2)}</p>
       <p>Descuento: ${descuentoPorcentaje}%</p>
-      <p>Precio final con descuento: ${precioFinal}</p>
+      <p>Precio final con impuestos y descuento: ${precioFinal.toFixed(2)}</p>
     `;
   } else {
-    resultadoTotalizar.innerHTML = "<p>Ingrese valores válidos.</p>";
+    resultadoTotalizar.innerHTML = "<p>Ingrese valores válidos o seleccione un estado válido.</p>";
   }
 });
