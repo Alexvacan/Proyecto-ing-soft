@@ -36,4 +36,7 @@ describe("Precio Total con Impuesto", () => {
   it("debería calcular el precio total correctamente para Texas", () => {
     expect(calcularPrecioTotal(100, "TX")).toEqual(106.25);
   });
+  it("debería calcular el precio total correctamente para Nevada", () => {
+    expect(calcularPrecioTotal(100, "NV")).toEqual(108.00);
+  });
 });
