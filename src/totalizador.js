@@ -27,19 +27,16 @@ export function calcularPrecioTotal(precioNeto, estado) {
     return precioNeto + impuestoTotal;
 }
 
-export function calcularDescuento(precioTotal) {
-    const descuentos = {
-        1000: 3,   
-    };
-
+export function calcularDescuento(precioNeto) {
     let descuentoPorcentaje = 0;
+    let descuento = 0;
 
-    Object.keys(descuentos).forEach((key) => {
-        if (precioTotal >= key) {
-            descuentoPorcentaje = descuentos[key];
-        }
-    });
+    if (precioNeto >= 1000 && precioNeto < 3000) {
+        descuentoPorcentaje = 3;
+    } else if (precioNeto >= 3000 && precioNeto < 7000) {
+        descuentoPorcentaje = 5;
+    }
 
-    const descuento = (precioTotal * descuentoPorcentaje) / 100;
+    descuento = (precioNeto * descuentoPorcentaje) / 100;
     return { descuentoPorcentaje, descuento };
 }

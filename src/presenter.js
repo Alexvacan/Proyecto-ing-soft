@@ -33,7 +33,8 @@ totalizarForm.addEventListener("submit", (event) => {
     const precioNeto = mostrar_precio_neto(cantidad, precio);
     const precioConImpuesto = calcularPrecioTotal(precioNeto, estado);
     const impuesto = precioConImpuesto - precioNeto;
-    const { descuentoPorcentaje, descuento } = calcularDescuento(precioConImpuesto);
+
+    const { descuentoPorcentaje, descuento } = calcularDescuento(precioNeto);
     const precioFinal = precioConImpuesto - descuento;
 
     resultadoTotalizar.innerHTML = `
