@@ -1,4 +1,8 @@
-import { mostrarCantidadDeItems, mostrar_precio_neto, obtenerImpuesto, calcularPrecioTotal} from "./totalizador.js";
+import { mostrarCantidadDeItems, 
+  mostrar_precio_neto, 
+  obtenerImpuesto, 
+  calcularPrecioTotal,
+} from "./totalizador.js";
 
 describe("Cantidad de Ítems", () => {
   it("debería mostrar la cantidad de items", () => {
