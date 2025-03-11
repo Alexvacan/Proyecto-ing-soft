@@ -5,3 +5,5 @@ describe("Totalizador", () => {
     expect(ingresarPrecio(10)).toBe(10);
   });
 });
+
+
