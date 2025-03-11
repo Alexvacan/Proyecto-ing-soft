@@ -2,6 +2,8 @@ import {
   ingresarPrecio,
   mostrarCantidadDeItems,
   mostrar_precio_neto,
+  calcularPrecioTotal,
+  calcularDescuento,
 } from "./totalizador.js";
 
 const precioInput = document.querySelector("#precio-input");
@@ -9,21 +11,6 @@ const itemsInput = document.querySelector("#items");
 const estadoSelect = document.querySelector("#estado");
 const totalizarForm = document.querySelector("#totalizar-form");
 const resultadoTotalizar = document.querySelector("#resultado-totalizar");
-
-const impuestos = {
-  UT: 6.65,
-  NV: 8.00,
-  TX: 6.25,
-  AL: 4.00,
-  CA: 8.25,
-};
-
-// Función para calcular el precio total con impuesto
-function calcularPrecioTotal(precioNeto, estado) {
-  const impuesto = impuestos[estado];
-  const impuestoTotal = (precioNeto * impuesto) / 100;
-  return precioNeto + impuestoTotal;
-}
 
 totalizarForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -33,17 +20,18 @@ totalizarForm.addEventListener("submit", (event) => {
   const estado = estadoSelect.value;
 
   if (!isNaN(precio) && !isNaN(cantidad)) {
-    const precioNeto = mostrar_precio_neto(cantidad, precio);
-    const precioTotal = calcularPrecioTotal(precioNeto, estado);
-    const impuesto = impuestos[estado];  
+    const precioNeto = mostrar_precio_neto(cantidad, precio); // Calcular precio neto
+    const precioConImpuesto = calcularPrecioTotal(precioNeto, estado); // Calcular precio con impuesto
+    const { descuentoPorcentaje, descuento } = calcularDescuento(precioConImpuesto); // Calcular descuento
+    const precioFinal = precioConImpuesto - descuento; // Precio final con descuento aplicado
 
     resultadoTotalizar.innerHTML = `
       <p>Precio ingresado: ${ingresarPrecio(precio)}</p>
       <p>Cantidad de ítems: ${mostrarCantidadDeItems(cantidad)}</p>
       <p>Precio neto: ${precioNeto}</p>
-      <p>Código de estado: ${estado}</p>
-      <p>Impuesto en ${estado}: ${impuesto}%</p>
-      <p>Precio total con impuesto: $${precioTotal.toFixed(2)}</p>  <!-- Mostrar el precio total con impuesto -->
+      <p>Impuesto en ${estado}: ${precioConImpuesto - precioNeto}</p>  <!-- Muestra solo el impuesto -->
+      <p>Descuento: ${descuentoPorcentaje}%</p>
+      <p>Precio final con descuento: ${precioFinal}</p>
     `;
   } else {
     resultadoTotalizar.innerHTML = "<p>Ingrese valores válidos.</p>";
