@@ -30,10 +30,6 @@ export function calcularPrecioTotal(precioNeto, estado) {
 export function calcularDescuento(precioTotal) {
     const descuentos = {
         1000: 3,   
-        3000: 5,    
-        7000: 7,   
-        10000: 10,  
-        30000: 15,  
     };
 
     let descuentoPorcentaje = 0;

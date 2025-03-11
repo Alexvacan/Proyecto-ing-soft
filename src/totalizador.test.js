@@ -60,3 +60,15 @@ describe("Precio Total con Impuesto y Descuento", () => {
     expect(precioConDescuento).toBeCloseTo(1050.03, 2);  
 });
 });
+
+describe("Precio Total con Impuesto y Descuento", () => {
+  it("debería calcular el precio total con impuesto y descuento de 3% para 1500", () => {
+    const precioNeto = 1500;
+    const estado = "TX";
+    const precioTotal = calcularPrecioTotal(precioNeto, estado);
+    const { descuentoPorcentaje, descuento } = calcularDescuento(precioTotal);
+    const precioConDescuento = precioTotal - descuento;
+
+    expect(precioConDescuento).toBeCloseTo(1545.94, 2);  
+});
+});
