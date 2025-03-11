@@ -2,6 +2,8 @@ import {
   ingresarPrecio,
   mostrarCantidadDeItems,
   mostrar_precio_neto,
+  calcularPrecioTotal,
+  obtenerImpuesto,
 } from "./totalizador.js";
 
 const precioInput = document.querySelector("#precio-input");
@@ -10,20 +12,6 @@ const estadoSelect = document.querySelector("#estado");
 const totalizarForm = document.querySelector("#totalizar-form");
 const resultadoTotalizar = document.querySelector("#resultado-totalizar");
 
-const impuestos = {
-  UT: 6.65,
-  NV: 8.00,
-  TX: 6.25,
-  AL: 4.00,
-  CA: 8.25,
-};
-
-// Función para calcular el precio total con impuesto
-function calcularPrecioTotal(precioNeto, estado) {
-  const impuesto = impuestos[estado];
-  const impuestoTotal = (precioNeto * impuesto) / 100;
-  return precioNeto + impuestoTotal;
-}
 
 totalizarForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -35,7 +23,7 @@ totalizarForm.addEventListener("submit", (event) => {
   if (!isNaN(precio) && !isNaN(cantidad)) {
     const precioNeto = mostrar_precio_neto(cantidad, precio);
     const precioTotal = calcularPrecioTotal(precioNeto, estado);
-    const impuesto = impuestos[estado];  
+    const impuesto = obtenerImpuesto(estado);  
 
     resultadoTotalizar.innerHTML = `
       <p>Precio ingresado: ${ingresarPrecio(precio)}</p>
