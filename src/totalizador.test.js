@@ -1,4 +1,4 @@
-import { mostrarCantidadDeItems, mostrar_precio_neto, obtenerImpuesto } from "./totalizador.js";
+import { mostrarCantidadDeItems, mostrar_precio_neto, obtenerImpuesto, calcularPrecioTotal} from "./totalizador.js";
 
 describe("Cantidad de Ítems", () => {
   it("debería mostrar la cantidad de items", () => {
@@ -23,5 +23,11 @@ describe("Impuestos", () => {
     expect(obtenerImpuesto("TX")).toBe(6.25);
     expect(obtenerImpuesto("AL")).toBe(4.00);
     expect(obtenerImpuesto("CA")).toBe(8.25);
+  });
+});
+
+describe("Precio Total con Impuesto", () => {
+  it("debería calcular el precio total correctamente para California", () => {
+    expect(calcularPrecioTotal(100, "CA")).toEqual(108.25);
   });
 });

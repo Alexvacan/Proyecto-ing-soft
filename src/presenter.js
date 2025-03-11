@@ -15,8 +15,15 @@ const impuestos = {
   NV: 8.00,
   TX: 6.25,
   AL: 4.00,
-  CA: 8.25
+  CA: 8.25,
 };
+
+// Función para calcular el precio total con impuesto
+function calcularPrecioTotal(precioNeto, estado) {
+  const impuesto = impuestos[estado];
+  const impuestoTotal = (precioNeto * impuesto) / 100;
+  return precioNeto + impuestoTotal;
+}
 
 totalizarForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -27,6 +34,7 @@ totalizarForm.addEventListener("submit", (event) => {
 
   if (!isNaN(precio) && !isNaN(cantidad)) {
     const precioNeto = mostrar_precio_neto(cantidad, precio);
+    const precioTotal = calcularPrecioTotal(precioNeto, estado);
     const impuesto = impuestos[estado];  
 
     resultadoTotalizar.innerHTML = `
@@ -34,7 +42,8 @@ totalizarForm.addEventListener("submit", (event) => {
       <p>Cantidad de ítems: ${mostrarCantidadDeItems(cantidad)}</p>
       <p>Precio neto: ${precioNeto}</p>
       <p>Código de estado: ${estado}</p>
-      <p>Impuesto en ${estado}: ${impuesto}%</p>  <!-- Mostrar impuesto solo al presionar Totalizar -->
+      <p>Impuesto en ${estado}: ${impuesto}%</p>
+      <p>Precio total con impuesto: $${precioTotal.toFixed(2)}</p>  <!-- Mostrar el precio total con impuesto -->
     `;
   } else {
     resultadoTotalizar.innerHTML = "<p>Ingrese valores válidos.</p>";
