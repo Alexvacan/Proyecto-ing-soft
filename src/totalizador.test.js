@@ -39,4 +39,7 @@ describe("Precio Total con Impuesto", () => {
   it("debería calcular el precio total correctamente para Nevada", () => {
     expect(calcularPrecioTotal(100, "NV")).toEqual(108.00);
   });
+  it("debería calcular el precio total correctamente para Utah", () => {
+    expect(calcularPrecioTotal(100, "UT")).toEqual(106.65);
+  });
 });
