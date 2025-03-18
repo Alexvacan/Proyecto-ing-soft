@@ -30,8 +30,8 @@ totalizarForm.addEventListener("submit", (event) => {
 
   if (!isNaN(precio) && !isNaN(cantidad) !== undefined) {
     const precioNeto = mostrar_precio_neto(cantidad, precio);
-    const precioTotal = calcularPrecioTotal(precioNeto, estado, categoria, precioEnvio);
     const precioEnvio = obtenerPreciodeEnvio(peso, cantidad);
+    const precioTotal = calcularPrecioTotal(precioNeto, estado, categoria, precioEnvio);
     const impuesto = obtenerImpuesto(estado); 
     const descuento = obtenerDescuento(precioNeto);
     const descuentoCategoria = obtenerDescuentoPorCategoria(categoria);
@@ -47,6 +47,7 @@ totalizarForm.addEventListener("submit", (event) => {
       <p>Impuesto en ${estado}: ${impuesto}%</p>
       <p>Descuento por categoría: ${descuentoCategoria}%</p>
       <p>Impuesto por categoría: ${impuestoCategoria}%</p>
+      <p>Precio de envío: $${precioEnvio.toFixed(2)}</p>
       <p>Precio total: $${precioTotal.toFixed(2)}</p>  <!-- Mostrar el precio total con impuesto -->
     `;
   } else {
