@@ -2,6 +2,7 @@ import { mostrarCantidadDeItems,
   mostrar_precio_neto, 
   obtenerImpuesto, 
   calcularPrecioTotal,
+  obtenerDescuento,
 } from "./totalizador.js";
 
 describe("Cantidad de Ítems", () => {
@@ -45,5 +46,11 @@ describe("Precio Total con Impuesto", () => {
   });
   it("debería calcular el precio total correctamente para Utah", () => {
     expect(calcularPrecioTotal(100, "UT")).toEqual(106.65);
+  });
+});
+
+describe("Descuentos", () => {
+  it("debería devolver el descuento correcto para una compra mayor a 1000", () => {
+    expect(obtenerDescuento(1300)).toBe(3);
   });
 });

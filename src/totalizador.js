@@ -21,6 +21,21 @@ export function obtenerImpuesto(estado) {
     return impuestos[estado] || 0;
 }
 
+export function obtenerDescuento(precioNeto) {
+    const descuentos = {
+      1000: 3,
+      3000: 5,
+      7000: 7,
+      10000: 10,
+      30000: 15
+    };
+    for (const descuento in descuentos) {
+      if (precioNeto > descuento) {
+        return descuentos[descuento];
+      }
+    }
+}
+
 export function calcularPrecioTotal(precioNeto, estado) {
     const impuestoPorcentaje = obtenerImpuesto(estado);
     const impuesto = (precioNeto * impuestoPorcentaje) / 100;
