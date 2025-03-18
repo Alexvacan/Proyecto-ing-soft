@@ -71,7 +71,7 @@ export function calcularPrecioTotalConImpuesto(precioNeto, estado) {
     return precioTotal;
 }
 
-export function calcularPrecioTotal(precioNeto, estado) {
+export function calcularPrecioTotalConDescuento(precioNeto, estado) {
     const impuestoPorcentaje = obtenerImpuesto(estado);
     const descuentoPorcentaje = obtenerDescuento(precioNeto);
     const precioDescuento = (precioNeto * descuentoPorcentaje) / 100;

@@ -4,6 +4,8 @@ import { mostrarCantidadDeItems,
   calcularPrecioTotal,
   obtenerDescuento,
   calcularPrecioTotalConImpuesto,
+  calcularPrecioTotalConDescuento,
+  obtenerImpuestoPorCategoria,
 } from "./totalizador.js";
 
 describe("Cantidad de Ítems", () => {
@@ -29,6 +31,31 @@ describe("Impuestos", () => {
     expect(obtenerImpuesto("TX")).toBe(6.25);
     expect(obtenerImpuesto("AL")).toBe(4.00);
     expect(obtenerImpuesto("CA")).toBe(8.25);
+  });
+});
+
+describe("Impuestos Por Categoria", () => {
+  it("debería devolver el impuesto correcto para cada estado", () => {
+    expect(obtenerImpuestoPorCategoria("Alimentos")).toBe(0);
+    expect(obtenerImpuestoPorCategoria("Bebidas Alcohólicas")).toBe(7);
+    expect(obtenerImpuestoPorCategoria("Material de escritorio")).toBe(0);
+    expect(obtenerImpuestoPorCategoria("Muebles")).toBe(3);
+    expect(obtenerImpuestoPorCategoria("Electrónicos")).toBe(4);
+    expect(obtenerImpuestoPorCategoria("Vestimenta")).toBe(2);
+    expect(obtenerImpuestoPorCategoria("Varios")).toBe(0);
+    
+  });
+});
+
+describe("Descuentos Por Categoria", () => {
+  it("debería devolver el descuento correcto para cada categoria", () => {
+    expect(obtenerDescuentoPorCategoria("Alimentos")).toBe(2);
+    expect(obtenerDescuentoPorCategoria("Bebidas Alcohólicas")).toBe(0);
+    expect(obtenerDescuentoPorCategoria("Material de escritorio")).toBe(1.5);
+    expect(obtenerDescuentoPorCategoria("Muebles")).toBe(0);
+    expect(obtenerDescuentoPorCategoria("Electrónicos")).toBe(1);
+    expect(obtenerDescuentoPorCategoria("Vestimenta")).toBe(0);
+    expect(obtenerDescuentoPorCategoria("Varios")).toBe(0);
   });
 });
 
@@ -73,19 +100,19 @@ describe("Descuentos", () => {
 
 describe("Precio Total", () => {
   it("debería calcular el precio total correctamente para California con venta mayor a 1000", () => {
-    expect(calcularPrecioTotal(1200, "CA")).toEqual(1263);
+    expect(calcularPrecioTotalConDescuento(1200, "CA")).toEqual(1263);
   });
   it("debería calcular el precio total correctamente para Alabama con venta mayor a 3000", () => {
-    expect(calcularPrecioTotal(3300, "AL")).toEqual(3267);
+    expect(calcularPrecioTotalConDescuento(3300, "AL")).toEqual(3267);
   });
   it("debería calcular el precio total correctamente para Texas con venta mayor a 7000", () => {
-    expect(calcularPrecioTotal(7300, "TX")).toEqual(7245.25);
+    expect(calcularPrecioTotalConDescuento(7300, "TX")).toEqual(7245.25);
   });
   it("debería calcular el precio total correctamente para Nevada con venta mayor a 10000", () => {
-    expect(calcularPrecioTotal(10300, "NV")).toEqual(10094);
+    expect(calcularPrecioTotalConDescuento(10300, "NV")).toEqual(10094);
   });
   it("debería calcular el precio total correctamente para Utah con venta mayor a 30000", () => {
-    expect(calcularPrecioTotal(30300, "UT")).toEqual(27769.95);
+    expect(calcularPrecioTotalConDescuento(30300, "UT")).toEqual(27769.95);
   });
 
 });
