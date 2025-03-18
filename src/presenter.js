@@ -25,17 +25,7 @@ totalizarForm.addEventListener("submit", (event) => {
   const estado = estadoSelect.value;
   const categoria = categoriaSelect.value;
 
-  const impuestos = {
-    UT: 6.65,
-    NV: 8.00,
-    TX: 6.25,
-    AL: 4.00,
-    CA: 8.25,
-  };
-
-  const impuestoEstado = impuestos[estado];
-
-  if (!isNaN(precio) && !isNaN(cantidad) && impuestoEstado !== undefined) {
+  if (!isNaN(precio) && !isNaN(cantidad) !== undefined) {
     const precioNeto = mostrar_precio_neto(cantidad, precio);
     const precioTotal = calcularPrecioTotal(precioNeto, estado, categoria);
     const impuesto = obtenerImpuesto(estado); 

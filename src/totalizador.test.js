@@ -7,6 +7,7 @@ import {
   calcularPrecioTotalConDescuento,
   obtenerImpuestoPorCategoria,
   obtenerDescuentoPorCategoria,
+  obtenerImpuesto,
 
 } from "./totalizador.js";
 
@@ -28,11 +29,11 @@ describe("Precio Neto", () => {
 
 describe("Impuestos", () => {
   it("debería calcular el impuesto correcto para cada estado", () => {
-    expect(calcularPrecioTotal(100, "UT")).toBe(106.65); 
-    expect(calcularPrecioTotal(100, "NV")).toBe(108.00);
-    expect(calcularPrecioTotal(100, "TX")).toBe(106.25); 
-    expect(calcularPrecioTotal(100, "AL")).toBe(104.00); 
-    expect(calcularPrecioTotal(100, "CA")).toBe(108.25); 
+    expect(obtenerImpuesto("UT")).toBe(6.65); 
+    expect(obtenerImpuesto("NV")).toBe(8.00);
+    expect(obtenerImpuesto("TX")).toBe(6.25); 
+    expect(obtenerImpuesto("AL")).toBe(4.00); 
+    expect(obtenerImpuesto("CA")).toBe(8.25); 
   });
 });
 

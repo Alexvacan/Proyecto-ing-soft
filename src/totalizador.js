@@ -10,21 +10,17 @@ export function mostrar_precio_neto(cantidad, precio) {
     return cantidad * precio;
 }
 
-export function calcularPrecioTotal(precioNeto, estado) {
+export function obtenerImpuesto(estado) {
     const impuestos = {
         UT: 6.65,
         NV: 8.00,
         TX: 6.25,
         AL: 4.00,
         CA: 8.25,
+        UT: 6.65,
     };
+    return impuestos[estado];
     
-    const impuesto = impuestos[estado];
-    if (impuesto === undefined) {
-        throw new Error(`El estado ${estado} no tiene un impuesto registrado.`);
-    }
-    const impuestoTotal = (precioNeto * impuesto) / 100;
-    return precioNeto + impuestoTotal;
 }
 
 export function obtenerImpuestoPorCategoria(categoria) {
