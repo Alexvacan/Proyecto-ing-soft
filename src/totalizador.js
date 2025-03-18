@@ -29,11 +29,13 @@ export function obtenerDescuento(precioNeto) {
       10000: 10,
       30000: 15
     };
-    for (const descuento in descuentos) {
-      if (precioNeto > descuento) {
-        return descuentos[descuento];
+    let descuentoAplicable = 0;
+    for (let descuento in descuentos) {
+      if (precioNeto >= parseInt(descuento)) {
+        descuentoAplicable = descuentos[descuento];
       }
     }
+    return descuentoAplicable;
 }
 
 export function calcularPrecioTotal(precioNeto, estado) {
