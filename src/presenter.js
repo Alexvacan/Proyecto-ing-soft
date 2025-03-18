@@ -3,12 +3,17 @@ import {
   mostrarCantidadDeItems,
   mostrar_precio_neto,
   calcularPrecioTotal,
-  calcularDescuento,
+  obtenerImpuesto,
+  obtenerDescuento,
+  obtenerDescuentoPorCategoria,
+  obtenerImpuestoPorCategoria
+
 } from "./totalizador.js";
 
 const precioInput = document.querySelector("#precio-input");
 const itemsInput = document.querySelector("#items");
 const estadoSelect = document.querySelector("#estado");
+const categoriaSelect = document.querySelector("#categoria");
 const totalizarForm = document.querySelector("#totalizar-form");
 const resultadoTotalizar = document.querySelector("#resultado-totalizar");
 
@@ -18,6 +23,7 @@ totalizarForm.addEventListener("submit", (event) => {
   const precio = Number.parseFloat(precioInput.value);
   const cantidad = Number.parseInt(itemsInput.value);
   const estado = estadoSelect.value;
+  const categoria = categoriaSelect.value;
 
   const impuestos = {
     UT: 6.65,
@@ -31,20 +37,23 @@ totalizarForm.addEventListener("submit", (event) => {
 
   if (!isNaN(precio) && !isNaN(cantidad) && impuestoEstado !== undefined) {
     const precioNeto = mostrar_precio_neto(cantidad, precio);
-    const precioConImpuesto = calcularPrecioTotal(precioNeto, estado);
-    const impuesto = precioConImpuesto - precioNeto;
+    const precioTotal = calcularPrecioTotal(precioNeto, estado, categoria);
+    const impuesto = obtenerImpuesto(estado); 
+    const descuento = obtenerDescuento(precioNeto);
+    const descuentoCategoria = obtenerDescuentoPorCategoria(categoria);
+    const impuestoCategoria = obtenerImpuestoPorCategoria(categoria); 
 
-    const { descuentoPorcentaje, descuento } = calcularDescuento(precioNeto);
-    const precioFinal = precioConImpuesto - descuento;
 
     resultadoTotalizar.innerHTML = `
       <p>Precio ingresado: ${ingresarPrecio(precio)}</p>
       <p>Cantidad de ítems: ${mostrarCantidadDeItems(cantidad)}</p>
       <p>Precio neto: ${precioNeto}</p>
-      <p>Impuesto para ${estado}: ${impuestoEstado}%</p>
-      <p>Impuesto: ${impuesto.toFixed(2)}</p>
-      <p>Descuento: ${descuentoPorcentaje}%</p>
-      <p>Precio final con impuestos y descuento: ${precioFinal.toFixed(2)}</p>
+      <p>Descuento: ${descuento}%</p>
+      <p>Código de estado: ${estado}</p>
+      <p>Impuesto en ${estado}: ${impuesto}%</p>
+      <p>Descuento por categoría: ${descuentoCategoria}%</p>
+      <p>Impuesto por categoría: ${impuestoCategoria}%</p>
+      <p>Precio total: $${precioTotal.toFixed(2)}</p>  <!-- Mostrar el precio total con impuesto -->
     `;
   } else {
     resultadoTotalizar.innerHTML = "<p>Ingrese valores válidos o seleccione un estado válido.</p>";
