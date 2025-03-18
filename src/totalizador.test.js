@@ -6,6 +6,7 @@ import { mostrarCantidadDeItems,
   calcularPrecioTotalConImpuesto,
   calcularPrecioTotalConDescuento,
   obtenerImpuestoPorCategoria,
+  obtenerDescuentoPorCategoria,
 } from "./totalizador.js";
 
 describe("Cantidad de Ítems", () => {
