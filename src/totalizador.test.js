@@ -3,6 +3,7 @@ import { mostrarCantidadDeItems,
   obtenerImpuesto, 
   calcularPrecioTotal,
   obtenerDescuento,
+  calcularPrecioTotalConImpuesto,
 } from "./totalizador.js";
 
 describe("Cantidad de Ítems", () => {
@@ -33,19 +34,19 @@ describe("Impuestos", () => {
 
 describe("Precio Total con Impuesto", () => {
   it("debería calcular el precio total correctamente para California", () => {
-    expect(calcularPrecioTotal(100, "CA")).toEqual(108.25);
+    expect(calcularPrecioTotalConImpuesto(100, "CA")).toEqual(108.25);
   });
   it("debería calcular el precio total correctamente para Alabama", () => {
-    expect(calcularPrecioTotal(100, "AL")).toEqual(104.00);
+    expect(calcularPrecioTotalConImpuesto(100, "AL")).toEqual(104.00);
   });
   it("debería calcular el precio total correctamente para Texas", () => {
-    expect(calcularPrecioTotal(100, "TX")).toEqual(106.25);
+    expect(calcularPrecioTotalConImpuesto(100, "TX")).toEqual(106.25);
   });
   it("debería calcular el precio total correctamente para Nevada", () => {
-    expect(calcularPrecioTotal(100, "NV")).toEqual(108.00);
+    expect(calcularPrecioTotalConImpuesto(100, "NV")).toEqual(108.00);
   });
   it("debería calcular el precio total correctamente para Utah", () => {
-    expect(calcularPrecioTotal(100, "UT")).toEqual(106.65);
+    expect(calcularPrecioTotalConImpuesto(100, "UT")).toEqual(106.65);
   });
 });
 
@@ -68,4 +69,17 @@ describe("Descuentos", () => {
   it("debería devolver 0 si no hay descuento", () => {
     expect(obtenerDescuento(500)).toBe(0);
   });
+});
+
+describe("Precio Total", () => {
+  it("debería calcular el precio total correctamente para California con venta mayor a 1000", () => {
+    expect(calcularPrecioTotal(1200, "CA")).toEqual(1263);
+  });
+  it("debería calcular el precio total correctamente para Alabama con venta mayor a 3000", () => {
+    expect(calcularPrecioTotal(3300, "AL")).toEqual(3267);
+  });
+  it("debería calcular el precio total correctamente para Texas con venta mayor a 7000", () => {
+    expect(calcularPrecioTotal(7300, "TX")).toEqual(7245.25);
+  });
+
 });

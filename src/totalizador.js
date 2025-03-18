@@ -38,11 +38,19 @@ export function obtenerDescuento(precioNeto) {
     }
     return descuentoAplicable;
 }
-
-export function calcularPrecioTotal(precioNeto, estado) {
+export function calcularPrecioTotalConImpuesto(precioNeto, estado) {
     const impuestoPorcentaje = obtenerImpuesto(estado);
     const impuesto = (precioNeto * impuestoPorcentaje) / 100;
     const precioTotal = precioNeto + impuesto;
+    return precioTotal;
+}
+
+export function calcularPrecioTotal(precioNeto, estado) {
+    const impuestoPorcentaje = obtenerImpuesto(estado);
+    const descuentoPorcentaje = obtenerDescuento(precioNeto);
+    const precioDescuento = (precioNeto * descuentoPorcentaje) / 100;
+    const impuesto = (precioNeto * impuestoPorcentaje) / 100;
+    const precioTotal = precioNeto + impuesto - precioDescuento;
     return precioTotal;
 }
 

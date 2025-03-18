@@ -34,7 +34,7 @@ totalizarForm.addEventListener("submit", (event) => {
       <p>Descuento: ${descuento}%</p>
       <p>Código de estado: ${estado}</p>
       <p>Impuesto en ${estado}: ${impuesto}%</p>
-      <p>Precio total con impuesto: $${precioTotal.toFixed(2)}</p>  <!-- Mostrar el precio total con impuesto -->
+      <p>Precio total (impuesto y descuento): $${precioTotal.toFixed(2)}</p>  <!-- Mostrar el precio total con impuesto -->
     `;
   } else {
     resultadoTotalizar.innerHTML = "<p>Ingrese valores válidos.</p>";
