@@ -130,4 +130,7 @@ describe("Precio de Envio", () => {
   it("debería calcular el precio de envío correctamente para 10 items con peso 8", () => {
     expect(obtenerPreciodeEnvio(8, 10)).toEqual(0);
   });
+  it("debería calcular el precio de envío correctamente para 10 items con peso 210", () => {
+    expect(obtenerPreciodeEnvio(210, 10)).toEqual(90);
+  });
 });
