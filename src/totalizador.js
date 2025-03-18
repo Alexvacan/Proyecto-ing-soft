@@ -31,7 +31,7 @@ export function obtenerImpuestoPorCategoria(categoria) {
       "Vestimenta": 2,
       "Varios": 0
     };
-    return categorias[categoria] || 0;
+    return categorias[categoria] ;
 }
 
 export function obtenerDescuentoPorCategoria(categoria) {
@@ -44,7 +44,7 @@ export function obtenerDescuentoPorCategoria(categoria) {
       "Vestimenta": 0,
       "Varios": 0
     };
-    return categorias[categoria] || 0;
+    return categorias[categoria] ;
 }
 
 export function obtenerDescuento(precioNeto) {
