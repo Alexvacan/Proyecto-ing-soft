@@ -4,6 +4,7 @@ import {
   mostrar_precio_neto,
   calcularPrecioTotal,
   obtenerImpuesto,
+  obtenerDescuento,
 } from "./totalizador.js";
 
 const precioInput = document.querySelector("#precio-input");
@@ -23,12 +24,14 @@ totalizarForm.addEventListener("submit", (event) => {
   if (!isNaN(precio) && !isNaN(cantidad)) {
     const precioNeto = mostrar_precio_neto(cantidad, precio);
     const precioTotal = calcularPrecioTotal(precioNeto, estado);
-    const impuesto = obtenerImpuesto(estado);  
+    const impuesto = obtenerImpuesto(estado); 
+    const descuento = obtenerDescuento(precioNeto); 
 
     resultadoTotalizar.innerHTML = `
       <p>Precio ingresado: ${ingresarPrecio(precio)}</p>
       <p>Cantidad de ítems: ${mostrarCantidadDeItems(cantidad)}</p>
       <p>Precio neto: ${precioNeto}</p>
+      <p>Descuento: ${descuento}%</p>
       <p>Código de estado: ${estado}</p>
       <p>Impuesto en ${estado}: ${impuesto}%</p>
       <p>Precio total con impuesto: $${precioTotal.toFixed(2)}</p>  <!-- Mostrar el precio total con impuesto -->
