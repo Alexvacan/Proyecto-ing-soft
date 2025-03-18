@@ -33,15 +33,14 @@ export function obtenerPreciodeEnvio(pesoVolumetrico, cantidadItems){
         200: 8,
     };
     let precioEnvio = 9;
-    let precioEnvioTotal = 0;
     for (let p in preciosPorPeso) {
       if (pesoVolumetrico <= parseInt(p)) {
         precioEnvio = preciosPorPeso[p];
+        break;
       }
      
     }
-    precioEnvioTotal = precioEnvio * cantidadItems;
-    return precioEnvioTotal;
+    return precioEnvio * cantidadItems;
 }
 
 export function obtenerImpuestoPorCategoria(categoria) {
