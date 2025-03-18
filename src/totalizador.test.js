@@ -84,5 +84,8 @@ describe("Precio Total", () => {
   it("debería calcular el precio total correctamente para Nevada con venta mayor a 10000", () => {
     expect(calcularPrecioTotal(10300, "NV")).toEqual(10094);
   });
+  it("debería calcular el precio total correctamente para Utah con venta mayor a 30000", () => {
+    expect(calcularPrecioTotal(30300, "UT")).toEqual(27769.95);
+  });
 
 });
