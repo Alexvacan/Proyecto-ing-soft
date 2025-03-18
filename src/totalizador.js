@@ -23,6 +23,27 @@ export function obtenerImpuesto(estado) {
     
 }
 
+export function obtenerPreciodeEnvio(pesoVolumetrico, cantidadItems){
+    const preciosPorPeso = {
+        10: 0,
+        20: 3.5,
+        40: 5,
+        80: 6,
+        100: 6.5,
+        200: 8,
+    };
+    let precioEnvio = 9;
+    let precioEnvioTotal = 0;
+    for (let p in preciosPorPeso) {
+      if (pesoVolumetrico <= parseInt(p)) {
+        precioEnvio = preciosPorPeso[p];
+      }
+     
+    }
+    precioEnvioTotal = precioEnvio * cantidadItems;
+    return precioEnvioTotal;
+}
+
 export function obtenerImpuestoPorCategoria(categoria) {
     const categorias = {
       "Alimentos": 0,
