@@ -34,9 +34,7 @@ export function obtenerDescuento(precioNeto) {
       if (precioNeto >= parseInt(descuento)) {
         descuentoAplicable = descuentos[descuento];
       }
-      else {
-        descuentoAplicable = 0;
-      }
+     
     }
     return descuentoAplicable;
 }
