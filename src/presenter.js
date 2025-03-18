@@ -6,12 +6,14 @@ import {
   obtenerImpuesto,
   obtenerDescuento,
   obtenerDescuentoPorCategoria,
-  obtenerImpuestoPorCategoria
+  obtenerImpuestoPorCategoria,
+  obtenerPreciodeEnvio,
 
 } from "./totalizador.js";
 
 const precioInput = document.querySelector("#precio-input");
 const itemsInput = document.querySelector("#items");
+const pesoInput = document.querySelector("#peso");
 const estadoSelect = document.querySelector("#estado");
 const categoriaSelect = document.querySelector("#categoria");
 const totalizarForm = document.querySelector("#totalizar-form");
@@ -22,12 +24,14 @@ totalizarForm.addEventListener("submit", (event) => {
 
   const precio = Number.parseFloat(precioInput.value);
   const cantidad = Number.parseInt(itemsInput.value);
+  const peso = Number.parseInt(pesoInput.value);
   const estado = estadoSelect.value;
   const categoria = categoriaSelect.value;
 
   if (!isNaN(precio) && !isNaN(cantidad) !== undefined) {
     const precioNeto = mostrar_precio_neto(cantidad, precio);
-    const precioTotal = calcularPrecioTotal(precioNeto, estado, categoria);
+    const precioTotal = calcularPrecioTotal(precioNeto, estado, categoria, precioEnvio);
+    const precioEnvio = obtenerPreciodeEnvio(peso, cantidad);
     const impuesto = obtenerImpuesto(estado); 
     const descuento = obtenerDescuento(precioNeto);
     const descuentoCategoria = obtenerDescuentoPorCategoria(categoria);
