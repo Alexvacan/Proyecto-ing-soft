@@ -34,6 +34,19 @@ export function obtenerImpuestoPorCategoria(categoria) {
     return categorias[categoria] || 0;
 }
 
+export function obtenerDescuentoPorCategoria(categoria) {
+    const categorias = {
+      "Alimentos": 2,
+      "Bebidas Alcohólicas": 0,
+      "Material de escritorio": 1.5,
+      "Muebles": 0,
+      "Electrónicos": 1,
+      "Vestimenta": 0,
+      "Varios": 0
+    };
+    return categorias[categoria] || 0;
+}
+
 export function obtenerDescuento(precioNeto) {
     const descuentos = {
       1000: 3,
