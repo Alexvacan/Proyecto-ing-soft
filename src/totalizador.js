@@ -80,4 +80,15 @@ export function calcularPrecioTotalConDescuento(precioNeto, estado) {
     return precioTotal;
 }
 
+export function calcularPrecioTotal(precioNeto, estado, categoria) {
+    const impuestoPorCategoria = (precioNeto * obtenerImpuestoPorCategoria(categoria))/100;
+    const descuentoPorCategoria = (precioNeto * obtenerDescuentoPorCategoria(categoria))/100;
+    const impuestoPorcentaje = obtenerImpuesto(estado);
+    const descuentoPorcentaje = obtenerDescuento(precioNeto);
+    const precioDescuento = (precioNeto * descuentoPorcentaje) / 100;
+    const impuesto = (precioNeto * impuestoPorcentaje) / 100;
+    const precioTotal = precioNeto + impuesto - precioDescuento + impuestoPorCategoria - descuentoPorCategoria;
+    return precioTotal;
+}
+
 
