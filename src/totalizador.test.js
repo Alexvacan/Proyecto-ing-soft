@@ -81,5 +81,8 @@ describe("Precio Total", () => {
   it("debería calcular el precio total correctamente para Texas con venta mayor a 7000", () => {
     expect(calcularPrecioTotal(7300, "TX")).toEqual(7245.25);
   });
+  it("debería calcular el precio total correctamente para Nevada con venta mayor a 10000", () => {
+    expect(calcularPrecioTotal(10300, "NV")).toEqual(10094);
+  });
 
 });
