@@ -62,4 +62,7 @@ describe("Descuentos", () => {
   it("debería devolver el descuento correcto para una compra mayor a 10000", () => {
     expect(obtenerDescuento(10300)).toBe(10);
   });
+  it("debería devolver el descuento correcto para una compra mayor a 30000", () => {
+    expect(obtenerDescuento(30300)).toBe(15);
+  });
 });
