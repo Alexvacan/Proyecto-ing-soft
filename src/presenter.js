@@ -7,6 +7,7 @@ import {
   obtenerDescuento,
   obtenerDescuentoPorCategoria,
   obtenerImpuestoPorCategoria
+
 } from "./totalizador.js";
 
 const precioInput = document.querySelector("#precio-input");
@@ -16,7 +17,6 @@ const categoriaSelect = document.querySelector("#categoria");
 const totalizarForm = document.querySelector("#totalizar-form");
 const resultadoTotalizar = document.querySelector("#resultado-totalizar");
 
-
 totalizarForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -25,13 +25,24 @@ totalizarForm.addEventListener("submit", (event) => {
   const estado = estadoSelect.value;
   const categoria = categoriaSelect.value;
 
-  if (!isNaN(precio) && !isNaN(cantidad)) {
+  const impuestos = {
+    UT: 6.65,
+    NV: 8.00,
+    TX: 6.25,
+    AL: 4.00,
+    CA: 8.25,
+  };
+
+  const impuestoEstado = impuestos[estado];
+
+  if (!isNaN(precio) && !isNaN(cantidad) && impuestoEstado !== undefined) {
     const precioNeto = mostrar_precio_neto(cantidad, precio);
     const precioTotal = calcularPrecioTotal(precioNeto, estado, categoria);
     const impuesto = obtenerImpuesto(estado); 
     const descuento = obtenerDescuento(precioNeto);
     const descuentoCategoria = obtenerDescuentoPorCategoria(categoria);
     const impuestoCategoria = obtenerImpuestoPorCategoria(categoria); 
+
 
     resultadoTotalizar.innerHTML = `
       <p>Precio ingresado: ${ingresarPrecio(precio)}</p>
@@ -45,6 +56,6 @@ totalizarForm.addEventListener("submit", (event) => {
       <p>Precio total: $${precioTotal.toFixed(2)}</p>  <!-- Mostrar el precio total con impuesto -->
     `;
   } else {
-    resultadoTotalizar.innerHTML = "<p>Ingrese valores válidos.</p>";
+    resultadoTotalizar.innerHTML = "<p>Ingrese valores válidos o seleccione un estado válido.</p>";
   }
 });

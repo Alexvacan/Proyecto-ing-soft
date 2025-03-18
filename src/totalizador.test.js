@@ -1,12 +1,13 @@
-import { mostrarCantidadDeItems, 
-  mostrar_precio_neto, 
-  obtenerImpuesto, 
+import {
+  mostrarCantidadDeItems,
+  mostrar_precio_neto,
   calcularPrecioTotal,
   obtenerDescuento,
   calcularPrecioTotalConImpuesto,
   calcularPrecioTotalConDescuento,
   obtenerImpuestoPorCategoria,
   obtenerDescuentoPorCategoria,
+
 } from "./totalizador.js";
 
 describe("Cantidad de Ítems", () => {
@@ -26,12 +27,12 @@ describe("Precio Neto", () => {
 });
 
 describe("Impuestos", () => {
-  it("debería devolver el impuesto correcto para cada estado", () => {
-    expect(obtenerImpuesto("UT")).toBe(6.65);
-    expect(obtenerImpuesto("NV")).toBe(8.00);
-    expect(obtenerImpuesto("TX")).toBe(6.25);
-    expect(obtenerImpuesto("AL")).toBe(4.00);
-    expect(obtenerImpuesto("CA")).toBe(8.25);
+  it("debería calcular el impuesto correcto para cada estado", () => {
+    expect(calcularPrecioTotal(100, "UT")).toBe(106.65); 
+    expect(calcularPrecioTotal(100, "NV")).toBe(108.00);
+    expect(calcularPrecioTotal(100, "TX")).toBe(106.25); 
+    expect(calcularPrecioTotal(100, "AL")).toBe(104.00); 
+    expect(calcularPrecioTotal(100, "CA")).toBe(108.25); 
   });
 });
 
@@ -88,6 +89,7 @@ describe("Descuentos", () => {
   it("debería devolver el descuento correcto para una compra mayor a 7000", () => {
     expect(obtenerDescuento(7300)).toBe(7);
   });
+
   it("debería devolver el descuento correcto para una compra mayor a 10000", () => {
     expect(obtenerDescuento(10300)).toBe(10);
   });
@@ -115,5 +117,6 @@ describe("Precio Total", () => {
   it("debería calcular el precio total correctamente para Utah con venta mayor a 30000", () => {
     expect(calcularPrecioTotalConDescuento(30300, "UT")).toEqual(27769.95);
   });
+
 
 });
