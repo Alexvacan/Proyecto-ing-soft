@@ -11,7 +11,7 @@
     "cypress": "cypress open",
     "cypress-run": "cypress run",
     "lint": "eslint .",
-    "postinstall": "git init && npx husky",
+    "postinstall": "git init",
     "semantic-commits-on": "node semantic-commits.js enable",
     "semantic-commits-off": "node semantic-commits.js disabled"
   },
@@ -28,5 +28,8 @@
     "husky": "^9.1.6",
     "jest": "^29.7.0",
     "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "@parcel/watcher": "^2.5.1"
   }
 }
