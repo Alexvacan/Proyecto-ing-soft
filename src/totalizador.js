@@ -110,5 +110,3 @@ export function calcularPrecioTotal(precioNeto, estado, categoria, costoenvio) {
     const precioTotal = precioNeto + impuesto - precioDescuento + impuestoPorCategoria - descuentoPorCategoria + costoenvio;
     return precioTotal;
 }
-
-
